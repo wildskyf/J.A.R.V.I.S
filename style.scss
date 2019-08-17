@@ -1,0 +1,111 @@
+---
+---
+
+$light-color: #51b8c5;
+
+$text-light-unit: 0 0 5px $light-color;
+$text-light: $text-light-unit, $text-light-unit;
+
+$lighter-text-unit: 0 0 10px $light-color;
+$lighter-text-light: $lighter-text-unit, $lighter-text-unit;
+
+$box-light-unit: 0 0 10px 3px $light-color;
+$box-light: $box-light-unit, inset $box-light-unit;
+
+$lighter-box-light-unit: 0 0 25px 3px $light-color;
+$lighter-box-light: $lighter-box-light-unit, inset $lighter-box-light-unit;
+
+$jarvis-size: 300px;
+
+body {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  background: #000;
+  font-family: 'Lato', sans-serif;
+}
+
+::selection {
+  text-shadow: $text-light, $text-light;
+}
+
+#grid-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: transparent;
+  background-size: 50px 50px;
+  background-position: center center;
+  background-image: linear-gradient(90deg, $light-color 1px, transparent 1px),
+                    linear-gradient($light-color 1px, transparent 1px);
+  opacity: .4;
+}
+
+@keyframes box-lighting {
+  0% {
+    box-shadow: $box-light;
+  }
+  50% {
+    box-shadow: $lighter-box-light;
+  }
+  100% {
+    box-shadow: $box-light;
+  }
+}
+
+@keyframes text-lighting {
+  0% {
+    text-shadow: $text-light;
+  }
+  50% {
+    text-shadow: $lighter-text-light;
+  }
+  100% {
+    text-shadow: $text-light;
+  }
+}
+
+#graph {
+  width: 100vw;
+  height: 100vh;
+  line-height: 100vh;
+}
+
+.circle {
+  margin: 40px;
+  display: inline-block;
+  min-width: $jarvis-size;
+  min-height: $jarvis-size;
+  border-radius: 50%;
+  border: 2px solid $light-color;
+  animation: box-lighting 2s infinite;
+  box-shadow: $box-light;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 48px;
+  color: $light-color;
+  animation: text-lighting 2s infinite;
+
+  margin: 0;
+  line-height: $jarvis-size;
+}
+
+@media screen and (max-width: 400px) {
+  $jarvis-size: 200px;
+
+  .circle {
+    min-width: $jarvis-size;
+    min-height: $jarvis-size;
+  }
+
+  h1 {
+    line-height: $jarvis-size;
+    font-size: 36px;
+  }
+
+}
